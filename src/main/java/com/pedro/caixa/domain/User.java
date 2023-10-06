@@ -11,14 +11,16 @@ public class User implements Serializable {
     private String id;
     private String name;
     private String email;
+    private String category;
 
     public User(){
     }
 
-    public User(String id, String name, String email) {
+    public User(String id, String name, String email, String category) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.category = category;
     }
 
     public String getName() {
@@ -42,6 +44,14 @@ public class User implements Serializable {
         this.id = id;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -66,4 +76,5 @@ public class User implements Serializable {
             return false;
         return true;
     }
+
 }
