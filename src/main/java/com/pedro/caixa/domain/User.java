@@ -1,6 +1,8 @@
 package com.pedro.caixa.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,6 +14,8 @@ public class User implements Serializable {
     private String name;
     private String email;
     private String category;
+
+    private List<MonthlyAccounts> monthlyAccounts = new ArrayList<>();
 
     public User(){
     }
@@ -52,6 +56,14 @@ public class User implements Serializable {
         this.category = category;
     }
     
+    public List<MonthlyAccounts> getMonthlyAccounts() {
+        return monthlyAccounts;
+    }
+
+    public void setMonthlyAccounts(List<MonthlyAccounts> monthlyAccounts) {
+        this.monthlyAccounts = monthlyAccounts;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -76,5 +88,4 @@ public class User implements Serializable {
             return false;
         return true;
     }
-
 }
