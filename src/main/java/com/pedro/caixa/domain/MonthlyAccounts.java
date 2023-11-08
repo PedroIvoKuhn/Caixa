@@ -2,7 +2,14 @@ package com.pedro.caixa.domain;
 
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class MonthlyAccounts {
+    @Id
+    private String id;
+    private String userId;
     private String month;
     private List<Account> incomming;
     private List<Account> expenses;
@@ -10,7 +17,9 @@ public class MonthlyAccounts {
     public MonthlyAccounts(){
     }
 
-    public MonthlyAccounts(String month, List<Account> incomming, List<Account> expenses) {
+    public MonthlyAccounts(String id, String userId, String month, List<Account> incomming, List<Account> expenses) {
+        this.id = id;
+        this.userId = userId;
         this.month = month.toUpperCase();
         this.incomming = incomming;
         this.expenses = expenses;
@@ -40,6 +49,22 @@ public class MonthlyAccounts {
         this.expenses = expenses;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -64,5 +89,4 @@ public class MonthlyAccounts {
             return false;
         return true;
     }
-
 }
