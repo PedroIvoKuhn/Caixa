@@ -1,11 +1,14 @@
 package com.pedro.caixa.config;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
+import com.pedro.caixa.domain.Account;
 import com.pedro.caixa.domain.MonthlyAccounts;
 import com.pedro.caixa.domain.User;
 import com.pedro.caixa.repository.MonthlyAccountsRepository;
@@ -21,6 +24,7 @@ public class Instantiation implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        SimpleDateFormat sdf =  new SimpleDateFormat("dd/MM/yyyy");
         userRepository.deleteAll();
         monthlyAccountsRepository.deleteAll();
 
@@ -30,8 +34,10 @@ public class Instantiation implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(pedro, marcele, joao));
 
-        MonthlyAccounts conta1 = new MonthlyAccounts(null, pedro.getId(), "Novembro", null, null);
-        
+        MonthlyAccounts conta1 = new MonthlyAccounts(null, pedro.getId(), "Novembro");
+        conta1.setIncomming(new Account("Computador", new Date(), 1400F));
+        conta1.setExpense(new Account("onibus", sdf.parse("07/11/2023"), 5F));
+
         monthlyAccountsRepository.saveAll(Arrays.asList(conta1));
         pedro.getMonthlyAccounts().add(conta1);
 

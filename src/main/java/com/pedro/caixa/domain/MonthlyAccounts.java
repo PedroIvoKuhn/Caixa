@@ -1,5 +1,6 @@
 package com.pedro.caixa.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -17,12 +18,12 @@ public class MonthlyAccounts {
     public MonthlyAccounts(){
     }
 
-    public MonthlyAccounts(String id, String userId, String month, List<Account> incomming, List<Account> expenses) {
+    public MonthlyAccounts(String id, String userId, String month) {
         this.id = id;
         this.userId = userId;
         this.month = month.toUpperCase();
-        this.incomming = incomming;
-        this.expenses = expenses;
+        this.incomming = new ArrayList<>();
+        this.expenses = new ArrayList<>();
     }
 
     public String getMonth() {
@@ -37,16 +38,16 @@ public class MonthlyAccounts {
         return incomming;
     }
 
-    public void setIncomming(List<Account> incomming) {
-        this.incomming = incomming;
+    public void setIncomming(Account incomming) {
+        this.incomming.add(incomming);
     }
 
     public List<Account> getExpenses() {
         return expenses;
     }
 
-    public void setExpenses(List<Account> expenses) {
-        this.expenses = expenses;
+    public void setExpense(Account expense) {
+        this.expenses.add(expense);
     }
 
     public String getId() {
