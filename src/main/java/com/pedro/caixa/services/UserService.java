@@ -21,10 +21,18 @@ public class UserService {
 
     public User findById(String id){
         Optional<User> obj = repo.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto nao encontrado"));
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto nao encontrado."));
     }
 
     public User insert(User obj){
         return repo.insert(obj);
+    }
+
+    public User login(String email, String password){
+        User obj = repo.findByEmail(email);
+        if (obj.checkPassword(password)) {
+            return obj;
+        }
+        throw new ObjectNotFoundException("Usuario ou senha incorretos.");
     }
 }
