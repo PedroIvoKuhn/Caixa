@@ -30,9 +30,12 @@ public class UserService {
 
     public User login(String email, String password){
         User obj = repo.findByEmail(email);
-        if (obj.checkPassword(password)) {
+        if (obj != null) {
+           if (obj.checkPassword(password)) {
             return obj;
+            } 
         }
+        
         throw new ObjectNotFoundException("Usuario ou senha incorretos.");
     }
 }
