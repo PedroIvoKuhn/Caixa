@@ -1,4 +1,4 @@
-package com.pedro.caixa.resources;
+package com.pedro.caixa.controllers;
 
 import java.net.URI;
 import java.util.List;
@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.pedro.caixa.domain.User;
+import com.pedro.caixa.dto.LoginDTO;
 import com.pedro.caixa.services.UserService;
 
 @RestController
 @RequestMapping(value = "/users")
-public class UserResource {
+public class UserController {
     @Autowired
     private UserService service;
     
@@ -43,8 +44,8 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<User> login(@RequestParam String email, @RequestParam String password){
-        User obj = service.login(email, password);
+    public ResponseEntity<User> login(@RequestBody LoginDTO user){
+        User obj = service.login(user.getEmail(), user.getPassword());
         return ResponseEntity.ok().body(obj);
     }
 }

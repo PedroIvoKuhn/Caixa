@@ -1,4 +1,4 @@
-package com.pedro.caixa.resources;
+package com.pedro.caixa.controllers;
 
 import java.net.URI;
 import java.util.List;
@@ -18,7 +18,7 @@ import com.pedro.caixa.services.MonthlyAccountsService;
 
 @RestController
 @RequestMapping(value = "/accounts")
-public class MonthlyAccountsResource {
+public class MonthlyAccountsController {
     @Autowired
     private MonthlyAccountsService service;
     

@@ -28,7 +28,7 @@ public class Instantiation implements CommandLineRunner {
         userRepository.deleteAll();
         monthlyAccountsRepository.deleteAll();
 
-        User pedro = new User(null, "Pedro", "pedro@gmail.com","123", "servico");
+        User pedro = new User(null, "Pedro", "pedro","123", "servico");
         User marcele = new User(null, "Marcele", "marcele@gmail.com", "456", "servico");
         User joao = new User(null, "Joao", "joao@gmail.com", "789", "servico");
 

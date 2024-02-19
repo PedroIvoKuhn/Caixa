@@ -1,4 +1,4 @@
-package com.pedro.caixa.resources.exception;
+package com.pedro.caixa.controllers.exception;
 
 import java.io.Serializable;
 
