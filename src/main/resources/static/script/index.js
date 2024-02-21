@@ -1,6 +1,6 @@
 window.onload = function(){
     document.getElementById("loginForm").addEventListener("submit", function(event){
-        event.preventDefault()   // Prevent the form from submitting normally
+        event.preventDefault()
       
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
@@ -15,9 +15,14 @@ window.onload = function(){
         })
         .then(response => { 
             if (!response.ok) {
-              throw new Error(`Usuario ou senha incorretos. Status: ${response.status}`)
+              throw new Error(`Usuario ou senha incorretos. Status: ${response.status}`);
             } 
-            window.location.href = "http://localhost:8080/homepage";
+            return response.json();
+          })
+          .then(data => {
+            localStorage.setItem('id', `${data.id}`);
+            console.log("salvou");
+            window.location.href = `http://localhost:8080/pages/homepage.html`;
           })
         .catch((error) => {
           alert(error);
