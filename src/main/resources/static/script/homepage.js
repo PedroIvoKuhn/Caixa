@@ -6,6 +6,7 @@ window.onload = function(){
           .then(data => {
             document.getElementById('username').textContent = `${data.name}`;
             document.getElementById('category').textContent = `${data.category}`;
+            
           })
         .catch((error) => {
 

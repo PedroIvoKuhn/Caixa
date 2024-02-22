@@ -63,5 +63,10 @@ public class Account {
         } else if (!name.equals(other.name))
             return false;
         return true;
+    }
+
+    public MonthlyAccounts orElseThrow(Object object) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
     }   
 }

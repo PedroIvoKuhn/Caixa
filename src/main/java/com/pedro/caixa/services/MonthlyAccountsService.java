@@ -19,11 +19,13 @@ public class MonthlyAccountsService {
         return repo.findAll();
     }
 
+    @SuppressWarnings("null")
     public MonthlyAccounts findById(String id){
         Optional<MonthlyAccounts> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto nao encontrado"));
     }
 
+    @SuppressWarnings("null")
     public MonthlyAccounts insert(MonthlyAccounts obj){
         return repo.insert(obj);
     }

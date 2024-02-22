@@ -22,6 +22,7 @@ public class Instantiation implements CommandLineRunner {
     @Autowired
     private MonthlyAccountsRepository monthlyAccountsRepository;
 
+    @SuppressWarnings("null")
     @Override
     public void run(String... args) throws Exception {
         SimpleDateFormat sdf =  new SimpleDateFormat("dd/MM/yyyy");
@@ -38,10 +39,16 @@ public class Instantiation implements CommandLineRunner {
         conta1.setIncomming(new Account("Computador", new Date(), 1400F));
         conta1.setExpense(new Account("onibus", sdf.parse("07/11/2023"), 5F));
 
-        monthlyAccountsRepository.saveAll(Arrays.asList(conta1));
+        MonthlyAccounts conta2 = new MonthlyAccounts(null, marcele.getId(), "Fevereiro");
+        conta2.setIncomming(new Account("Mesa", new Date(), 350F));
+        conta2.setExpense(new Account("Curso", sdf.parse("07/11/2023"), 500F));
+
+        monthlyAccountsRepository.saveAll(Arrays.asList(conta1, conta2));
         pedro.getMonthlyAccounts().add(conta1);
+        marcele.getMonthlyAccounts().add(conta2);
 
         userRepository.save(pedro);
+        userRepository.save(marcele);
 
     }
 }
