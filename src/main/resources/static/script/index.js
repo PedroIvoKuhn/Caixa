@@ -20,7 +20,7 @@ window.onload = function(){
             return response.json();
           })
           .then(data => {
-            localStorage.setItem('id', `${data.id}`);
+            localStorage.setItem('userId', `${data.id}`);
             console.log("salvou");
             window.location.href = `http://localhost:8080/pages/homepage.html`;
           })

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.pedro.caixa.domain.MonthlyAccounts;
 import com.pedro.caixa.services.MonthlyAccountsService;
+import com.pedro.caixa.services.exception.ObjectNotFoundException;
 
 @RestController
 @RequestMapping(value = "/accounts")
@@ -28,9 +29,18 @@ public class MonthlyAccountsController {
         return ResponseEntity.ok().body(list);
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<MonthlyAccounts> findById(@PathVariable String id){
+    @GetMapping(value = "/{id}u{userId}")
+    public ResponseEntity<MonthlyAccounts> findById(@PathVariable String id, @PathVariable String userId){
         MonthlyAccounts obj = service.findById(id);
+        if (!obj.getUserId().equals(userId)) {
+            throw new ObjectNotFoundException("Acesso negado");
+        }
+        return ResponseEntity.ok().body(obj);
+    }
+
+    @GetMapping(value = "/u{userId}")
+    public ResponseEntity<MonthlyAccounts> findByUserId(@PathVariable String userId){
+        MonthlyAccounts obj = service.findByUserId(userId);
         return ResponseEntity.ok().body(obj);
     }
 

@@ -35,20 +35,26 @@ public class Instantiation implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(pedro, marcele, joao));
 
-        MonthlyAccounts conta1 = new MonthlyAccounts(null, pedro.getId(), "Novembro");
+        MonthlyAccounts conta1 = new MonthlyAccounts(null, pedro.getId(), "Janeiro");
         conta1.setIncomming(new Account("Computador", new Date(), 1400F));
-        conta1.setExpense(new Account("onibus", sdf.parse("07/11/2023"), 5F));
+        conta1.setIncomming(new Account("Notebook", new Date(), 2000.50F));
+        conta1.setExpense(new Account("onibus", sdf.parse("20/01/2024"), 5F));
+
+        MonthlyAccounts conta3 = new MonthlyAccounts(null, pedro.getId(), "Fevereiro");
+        conta3.setIncomming(new Account("Mesa", new Date(), 1650.99F));
+        conta3.setIncomming(new Account("Cadeira", new Date(), 756.46F));
+        conta3.setExpense(new Account("Garrafa", sdf.parse("22/02/2024"), 45F));
 
         MonthlyAccounts conta2 = new MonthlyAccounts(null, marcele.getId(), "Fevereiro");
         conta2.setIncomming(new Account("Mesa", new Date(), 350F));
-        conta2.setExpense(new Account("Curso", sdf.parse("07/11/2023"), 500F));
+        conta2.setExpense(new Account("Curso", sdf.parse("10/02/2024"), 500F));
 
-        monthlyAccountsRepository.saveAll(Arrays.asList(conta1, conta2));
+        monthlyAccountsRepository.saveAll(Arrays.asList(conta1, conta2, conta3));
         pedro.getMonthlyAccounts().add(conta1);
+        pedro.getMonthlyAccounts().add(conta3);
         marcele.getMonthlyAccounts().add(conta2);
 
         userRepository.save(pedro);
         userRepository.save(marcele);
-
     }
 }
